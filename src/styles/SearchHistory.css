@@ -1,0 +1,53 @@
+
+.search-history {
+  margin-bottom: 25px;
+}
+
+.search-history__label {
+  display: block;
+  margin-bottom: 10px;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.search-history__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-history__select {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px;
+  background-color: #17213b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.search-history__clear {
+  padding: 12px 16px;
+  background-color: #334155;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.search-history__clear:hover:not(:disabled) {
+  background-color: #475569;
+}
+
+.search-history__clear:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.search-history__count {
+  margin-top: 10px;
+  color: #94a3b8;
+  font-size: 12px;
+}
