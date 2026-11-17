@@ -131,5 +131,203 @@ export const players = [
     age: 33,
     goals: 30,
     assists: 11
+  },
+  {
+    id: 13,
+    number: 11,
+    name: 'Raphinha',
+    club: 'Barcelona',
+    position: 'Delantero',
+    country: 'Brasil',
+    age: 29,
+    goals: 21,
+    assists: 17
+  },
+  {
+    id: 14,
+    number: 7,
+    name: 'Cristiano Ronaldo',
+    club: 'Al Nassr',
+    position: 'Delantero',
+    country: 'Portugal',
+    age: 41,
+    goals: 33,
+    assists: 5
+  },
+  {
+    id: 15,
+    number: 17,
+    name: 'Kevin De Bruyne',
+    club: 'Napoli',
+    position: 'Mediocampista',
+    country: 'Bélgica',
+    age: 35,
+    goals: 9,
+    assists: 20
+  },
+  {
+    id: 16,
+    number: 9,
+    name: 'Robert Lewandowski',
+    club: 'Barcelona',
+    position: 'Delantero',
+    country: 'Polonia',
+    age: 38,
+    goals: 29,
+    assists: 6
+  },
+  {
+    id: 17,
+    number: 10,
+    name: 'Florian Wirtz',
+    club: 'Liverpool',
+    position: 'Mediocampista',
+    country: 'Alemania',
+    age: 23,
+    goals: 13,
+    assists: 16
+  },
+  {
+    id: 18,
+    number: 8,
+    name: 'Federico Valverde',
+    club: 'Real Madrid',
+    position: 'Mediocampista',
+    country: 'Uruguay',
+    age: 28,
+    goals: 11,
+    assists: 10
+  },
+  {
+    id: 19,
+    number: 41,
+    name: 'Declan Rice',
+    club: 'Arsenal',
+    position: 'Mediocampista',
+    country: 'Inglaterra',
+    age: 27,
+    goals: 7,
+    assists: 9
+  },
+  {
+    id: 20,
+    number: 9,
+    name: 'Julián Álvarez',
+    club: 'Atlético de Madrid',
+    position: 'Delantero',
+    country: 'Argentina',
+    age: 26,
+    goals: 23,
+    assists: 12
+  },
+  {
+    id: 21,
+    number: 10,
+    name: 'Lautaro Martínez',
+    club: 'Inter de Milán',
+    position: 'Delantero',
+    country: 'Argentina',
+    age: 29,
+    goals: 27,
+    assists: 8
+  },
+  {
+    id: 22,
+    number: 4,
+    name: 'Rúben Dias',
+    club: 'Manchester City',
+    position: 'Defensa',
+    country: 'Portugal',
+    age: 29,
+    goals: 2,
+    assists: 2
+  },
+  {
+    id: 23,
+    number: 2,
+    name: 'William Saliba',
+    club: 'Arsenal',
+    position: 'Defensa',
+    country: 'Francia',
+    age: 25,
+    goals: 3,
+    assists: 2
+  },
+  {
+    id: 24,
+    number: 23,
+    name: 'Alessandro Bastoni',
+    club: 'Inter de Milán',
+    position: 'Defensa',
+    country: 'Italia',
+    age: 27,
+    goals: 2,
+    assists: 6
+  },
+  {
+    id: 25,
+    number: 1,
+    name: 'Alisson Becker',
+    club: 'Liverpool',
+    position: 'Portero',
+    country: 'Brasil',
+    age: 34,
+    goals: 0,
+    assists: 1
+  },
+  {
+    id: 26,
+    number: 1,
+    name: 'Gianluigi Donnarumma',
+    club: 'Manchester City',
+    position: 'Portero',
+    country: 'Italia',
+    age: 27,
+    goals: 0,
+    assists: 0
+  },
+  {
+    id: 27,
+    number: 10,
+    name: 'Cole Palmer',
+    club: 'Chelsea',
+    position: 'Mediocampista',
+    country: 'Inglaterra',
+    age: 24,
+    goals: 19,
+    assists: 13
+  },
+  {
+    id: 28,
+    number: 7,
+    name: 'Bukayo Saka',
+    club: 'Arsenal',
+    position: 'Delantero',
+    country: 'Inglaterra',
+    age: 25,
+    goals: 17,
+    assists: 14
+  },
+  {
+    id: 29,
+    number: 8,
+    name: 'Bruno Fernandes',
+    club: 'Manchester United',
+    position: 'Mediocampista',
+    country: 'Portugal',
+    age: 32,
+    goals: 12,
+    assists: 15
+  },
+  {
+    id: 30,
+    number: 11,
+    name: 'Luis Díaz',
+    club: 'Bayern Múnich',
+    position: 'Delantero',
+    country: 'Colombia',
+    age: 29,
+    goals: 20,
+    assists: 11
   }
 ];

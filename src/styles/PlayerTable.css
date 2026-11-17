@@ -1,0 +1,99 @@
+
+.player-table {
+  margin-top: 25px;
+  padding: 25px;
+  background-color: #17213b;
+  border: 1px solid #283552;
+  border-radius: 12px;
+}
+
+.player-table__title {
+  margin: 0 0 20px;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.player-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.player-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.player-table__heading {
+  padding: 14px;
+  background-color: #24304b;
+  color: #ffc107;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.player-table__sort {
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.player-table__sort:hover {
+  color: #ffffff;
+}
+
+.player-table__cell {
+  padding: 14px;
+  border-bottom: 1px solid #334155;
+}
+
+.player-table__cell--name {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.player-table__row {
+  transition: background-color 0.2s ease;
+}
+
+.player-table__row:hover {
+  background-color: #2d3d5e;
+}
+
+.player-table__row--even {
+  background-color: #23435c;
+}
+
+.player-table__row--odd {
+  background-color: #55432e;
+}
+
+.player-table__favorite {
+  padding: 4px;
+  background: none;
+  border: none;
+  color: #ffc107;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.player-table__empty {
+  padding: 25px;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .player-table {
+    padding: 15px;
+  }
+
+  .player-table__table {
+    min-width: 850px;
+  }
+}
