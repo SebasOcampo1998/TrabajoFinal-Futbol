@@ -220,6 +220,13 @@ Se realizaron pruebas de:
 
 https://github.com/SebasOcampo1998/TrabajoFinal-Futbol
 
+
+## Aplicación publicada
+
+Dashboard de Jugadores de Fútbol:
+
+https://trabajo-final-futbol.vercel.app/
+
 ## Documentación adicional
 
 Consultar APRENDIZAJE.md para conocer los conceptos aprendidos durante el desarrollo.
