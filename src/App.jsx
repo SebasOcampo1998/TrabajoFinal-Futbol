@@ -8,12 +8,13 @@ import StatsPanel from './components/StatsPanel';
 import PlayerTable from './components/PlayerTable';
 import Pagination from './components/Pagination';
 import Modal from './components/Modal';
+import ThemeToggle from './components/ThemeToggle';
 
 import { players } from './data/players';
 
 import './App.css';
 
-// FUNCION PARA ACTUALIZAR EL HISTORIAL
+// ACTUALIZAR LAS ULTIMAS CINCO BUSQUEDAS
 function updateSearchHistory(previous, term) {
   const normalizedTerm = term.trim();
 
@@ -49,14 +50,14 @@ function App() {
     direction: 'none'
   });
 
-  // 3. ESTADO DE COLOREO
+  // 3. COLOREO DE FILAS
   const [rowColors, setRowColors] = useState('none');
 
-  // 4. ESTADOS DE PAGINACION
+  // 4. PAGINACION
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  // 5. ESTADOS DE FAVORITOS
+  // 5. FAVORITOS
   const [favorites, setFavorites] = useState(() => {
     try {
       const saved = localStorage.getItem('favorites');
@@ -72,7 +73,7 @@ function App() {
 
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
-  // 6. ESTADO DEL MODAL
+  // 6. MODAL
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   // 7. HISTORIAL DE BUSQUEDAS
@@ -91,7 +92,17 @@ function App() {
     }
   });
 
-  // 8. DEBOUNCE DE 300 MILISEGUNDOS
+  // 8. MODO OSCURO Y CLARO
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem('darkMode');
+      return saved === null ? true : JSON.parse(saved) === true;
+    } catch {
+      return true;
+    }
+  });
+
+  // 9. DEBOUNCE DE 300 MILISEGUNDOS
   useEffect(() => {
     const timer = setTimeout(() => {
       const term = searchTerm.trim();
@@ -108,7 +119,7 @@ function App() {
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  // 9. GUARDAR FAVORITOS EN LOCALSTORAGE
+  // 10. GUARDAR FAVORITOS
   useEffect(() => {
     localStorage.setItem(
       'favorites',
@@ -116,7 +127,7 @@ function App() {
     );
   }, [favorites]);
 
-  // 10. GUARDAR HISTORIAL EN LOCALSTORAGE
+  // 11. GUARDAR HISTORIAL
   useEffect(() => {
     localStorage.setItem(
       'searchHistory',
@@ -124,7 +135,15 @@ function App() {
     );
   }, [searchHistory]);
 
-  // 11. FILTRAR POR NOMBRE Y FAVORITOS
+  // 12. GUARDAR TEMA
+  useEffect(() => {
+    localStorage.setItem(
+      'darkMode',
+      JSON.stringify(darkMode)
+    );
+  }, [darkMode]);
+
+  // 13. FILTRAR JUGADORES
   const filteredPlayers = useMemo(() => {
     const normalizedSearch = debouncedSearch.toLowerCase();
 
@@ -145,7 +164,7 @@ function App() {
     favorites
   ]);
 
-  // 12. ORDENAR JUGADORES
+  // 14. ORDENAR JUGADORES
   const sortedPlayers = useMemo(() => {
     if (
       !sortConfig.key ||
@@ -173,7 +192,7 @@ function App() {
     });
   }, [filteredPlayers, sortConfig]);
 
-  // 13. ESTADISTICAS CON USEMEMO
+  // 15. ESTADISTICAS
   const stats = useMemo(() => {
     const total = filteredPlayers.length;
 
@@ -215,23 +234,19 @@ function App() {
     };
   }, [filteredPlayers]);
 
-  // 14. TOTAL DE PAGINAS
+  // 16. PAGINACION SEGURA
   const totalPages = Math.max(
     1,
     Math.ceil(sortedPlayers.length / itemsPerPage)
   );
 
-  // 15. PAGINA ACTUAL SEGURA
   const safeCurrentPage = Math.min(
     currentPage,
     totalPages
   );
 
-  // 16. JUGADORES DE LA PAGINA ACTUAL
   const paginatedPlayers = useMemo(() => {
-    const start =
-      (safeCurrentPage - 1) * itemsPerPage;
-
+    const start = (safeCurrentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
 
     return sortedPlayers.slice(start, end);
@@ -241,52 +256,42 @@ function App() {
     itemsPerPage
   ]);
 
-  // 17. ORDENAMIENTO DE COLUMNAS
+  // 17. ORDENAMIENTO
   function handleSort(key) {
     setSortConfig((previous) => {
       if (previous.key !== key) {
-        return {
-          key,
-          direction: 'asc'
-        };
+        return { key, direction: 'asc' };
       }
 
       if (previous.direction === 'asc') {
-        return {
-          key,
-          direction: 'desc'
-        };
+        return { key, direction: 'desc' };
       }
 
-      return {
-        key: null,
-        direction: 'none'
-      };
+      return { key: null, direction: 'none' };
     });
 
     setCurrentPage(1);
   }
 
-  // 18. ACTUALIZAR BUSQUEDA
+  // 18. BUSQUEDA
   function handleSearchChange(value) {
     setSearchTerm(value);
     setCurrentPage(1);
   }
 
-  // 19. LIMPIAR BUSQUEDA
   function clearSearch() {
     setSearchTerm('');
     setDebouncedSearch('');
     setCurrentPage(1);
   }
 
-  // 20. CAMBIAR CANTIDAD DE REGISTROS
+  // 19. CAMBIAR REGISTROS POR PAGINA
   function handleItemsPerPageChange(value) {
     setItemsPerPage(value);
     setCurrentPage(1);
   }
 
-  // 21. AGREGAR O QUITAR FAVORITOS
+  // 20. FAVORITOS
   function handleToggleFavorite(playerId) {
     setFavorites((previous) => {
       if (previous.includes(playerId)) {
@@ -299,13 +304,12 @@ function App() {
     });
   }
 
-  // 22. MOSTRAR SOLO FAVORITOS
   function handleFavoritesFilter(checked) {
     setShowOnlyFavorites(checked);
     setCurrentPage(1);
   }
 
-  // 23. RECUPERAR UNA BUSQUEDA ANTERIOR
+  // 21. HISTORIAL
   function handleSelectSearch(term) {
     setSearchTerm(term);
     setDebouncedSearch(term);
@@ -316,20 +320,38 @@ function App() {
     );
   }
 
-  // 24. LIMPIAR HISTORIAL
   function handleClearHistory() {
     setSearchHistory([]);
   }
 
-  // 25. CERRAR MODAL
+  // 22. MODAL
   function handleCloseModal() {
     setSelectedPlayer(null);
   }
 
+  // 23. CAMBIAR TEMA
+  function handleToggleTheme() {
+    setDarkMode((previous) => !previous);
+  }
+
   return (
-    <div className="dashboard">
+    <div
+      className={
+        darkMode
+          ? 'dashboard dashboard--dark'
+          : 'dashboard dashboard--light'
+      }
+    >
       {/* ENCABEZADO */}
       <Header />
+
+      {/* INTERRUPTOR DE TEMA */}
+      <div className="dashboard__theme-control">
+        <ThemeToggle
+          darkMode={darkMode}
+          onToggle={handleToggleTheme}
+        />
+      </div>
 
       <main className="dashboard__main">
         {/* BUSCADOR */}
@@ -347,10 +369,10 @@ function App() {
           onClearHistory={handleClearHistory}
         />
 
-        {/* PANEL DE ESTADISTICAS */}
+        {/* ESTADISTICAS */}
         <StatsPanel stats={stats} />
 
-        {/* CONTROLES DE FAVORITOS */}
+        {/* FAVORITOS */}
         <div className="dashboard__favorites">
           <span className="dashboard__favorites-count">
             ★ {favorites.length} favoritos guardados
@@ -369,7 +391,7 @@ function App() {
           </label>
         </div>
 
-        {/* BOTONES PARA COLOREAR FILAS */}
+        {/* COLOREO DE FILAS */}
         <div className="dashboard__row-controls">
           <button
             type="button"
@@ -393,7 +415,7 @@ function App() {
           </button>
         </div>
 
-        {/* TABLA DE JUGADORES */}
+        {/* TABLA */}
         <PlayerTable
           players={paginatedPlayers}
           onRowClick={setSelectedPlayer}
@@ -404,7 +426,7 @@ function App() {
           onToggleFavorite={handleToggleFavorite}
         />
 
-        {/* PAGINACION DINAMICA */}
+        {/* PAGINACION */}
         <Pagination
           currentPage={safeCurrentPage}
           totalPages={totalPages}
@@ -415,7 +437,7 @@ function App() {
         />
       </main>
 
-      {/* MODAL DE DETALLES */}
+      {/* MODAL */}
       <Modal
         isOpen={selectedPlayer !== null}
         onClose={handleCloseModal}
