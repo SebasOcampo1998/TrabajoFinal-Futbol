@@ -1,3 +1,5 @@
+import '../styles/StatsPanel.css';
+
 function StatsPanel({ stats }) {
   return (
     <section className="stats">
