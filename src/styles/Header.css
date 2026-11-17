@@ -1,0 +1,48 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 50px;
+  background: linear-gradient(
+    110deg,
+    #25170e,
+    #85400e,
+    #ff7900
+  );
+  border-radius: 0 0 25px 25px;
+  color: #ffffff;
+}
+
+.header__content {
+  max-width: 800px;
+}
+
+.header__brand {
+  color: #ffc107;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.header__title {
+  margin: 12px 0;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.header__description {
+  margin: 0;
+  color: #eeeeee;
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 25px;
+  }
+
+  .header__title {
+    font-size: 27px;
+  }
+}
